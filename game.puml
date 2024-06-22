@@ -1,0 +1,15 @@
+@startuml
+
+scale 2
+
+interface Healable
+
+class Marin implements Healable
+class Zergling implements Healable
+class Scv implements Healable
+
+class Medic {
+    + heal(healable : Healable)
+}
+
+@enduml

@@ -1,0 +1,68 @@
+@startuml Android Project Class Diagram
+
+' Main application classes
+class MainActivity
+class TodoApplication
+
+' Data layer
+class TodoDataSource
+
+class TodoRepositoryImpl {
+  -dataSource: TodoDataSource
+}
+
+' Domain layer
+class Todo {
+  +id: Int
+  +title: String
+  +isCompleted: Boolean
+}
+
+interface TodoRepository
+
+class AddTodoUseCase {
+  -repository: TodoRepository
+}
+
+class DeleteTodoUseCase {
+  -repository: TodoRepository
+}
+
+class GetTodosUseCase {
+  -repository: TodoRepository
+}
+
+class UpdateTodoUseCase {
+  -repository: TodoRepository
+}
+
+' Presentation layer
+class TodoViewModel {
+  -addTodoUseCase: AddTodoUseCase
+  -deleteTodoUseCase: DeleteTodoUseCase
+  -getTodosUseCase: GetTodosUseCase
+  -updateTodoUseCase: UpdateTodoUseCase
+  +todos: StateFlow<List<Todo>>
+}
+
+class TodoScreen {
+  -viewModel: TodoViewModel
+}
+
+' Relationships
+TodoRepositoryImpl ..|> TodoRepository
+TodoRepositoryImpl --> TodoDataSource
+
+AddTodoUseCase --> TodoRepository
+DeleteTodoUseCase --> TodoRepository
+GetTodosUseCase --> TodoRepository
+UpdateTodoUseCase --> TodoRepository
+
+TodoViewModel --> AddTodoUseCase
+TodoViewModel --> DeleteTodoUseCase
+TodoViewModel --> GetTodosUseCase
+TodoViewModel --> UpdateTodoUseCase
+
+TodoScreen --> TodoViewModel
+
+@enduml

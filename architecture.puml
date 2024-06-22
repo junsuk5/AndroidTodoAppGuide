@@ -1,0 +1,45 @@
+@startuml Android Project Structure
+
+package "Android Project" {
+  [MainActivity]
+  [TodoApplication]
+
+  package "data" {
+    package "data_source" {
+      [TodoDataSource]
+    }
+    package "repository" {
+      [TodoRepositoryImpl]
+    }
+  }
+
+  package "domain" {
+    package "model" {
+      [Todo]
+    }
+    package "repository" {
+      interface TodoRepository
+    }
+    package "use_case" {
+      [AddTodoUseCase]
+      [DeleteTodoUseCase]
+      [GetTodosUseCase]
+      [UpdateTodoUseCase]
+    }
+  }
+
+  package "presentation" {
+    [TodoScreen]
+    [TodoViewModel]
+  }
+
+}
+
+TodoRepositoryImpl ..|> TodoRepository : implements
+TodoViewModel --> AddTodoUseCase : uses
+TodoViewModel --> DeleteTodoUseCase : uses
+TodoViewModel --> GetTodosUseCase : uses
+TodoViewModel --> UpdateTodoUseCase : uses
+TodoScreen --> TodoViewModel : observes
+
+@enduml
