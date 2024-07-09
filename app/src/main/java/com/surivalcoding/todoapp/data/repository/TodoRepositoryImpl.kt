@@ -1,15 +1,11 @@
 package com.surivalcoding.todoapp.data.repository
 
-import com.surivalcoding.todoapp.data.data_source.TodoDataSource
+import com.surivalcoding.todoapp.data.data_source.impl.TodoDataSourceImpl
 import com.surivalcoding.todoapp.domain.model.Todo
 import com.surivalcoding.todoapp.domain.repository.TodoRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 class TodoRepositoryImpl(
-    private val todoDataSource: TodoDataSource
+    private val todoDataSource: TodoDataSourceImpl
 ) : TodoRepository {
 
     override fun getTodos(): List<Todo> {
