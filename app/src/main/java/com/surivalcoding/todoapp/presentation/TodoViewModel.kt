@@ -23,14 +23,14 @@ class TodoViewModel(
 
     init {
         _uiState.update {
-            it.copy(todos = getTodosUseCase())
+            it.copy(todos = getTodosUseCase.invoke())
         }
     }
 
     fun addTodo(todo: Todo) {
         addTodoUseCase.invoke(todo)
         _uiState.update {
-            it.copy(todos = getTodosUseCase())
+            it.copy(todos = getTodosUseCase.invoke())
         }
     }
 

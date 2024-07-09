@@ -9,5 +9,6 @@ class GetTodosUseCase(
     operator fun invoke(): List<Todo> {
         // TODO : 사장님 요구 사항 추가, id 순으로 정렬
         return todoRepository.getTodos()
+            .sortedBy { it.id }
     }
 }
