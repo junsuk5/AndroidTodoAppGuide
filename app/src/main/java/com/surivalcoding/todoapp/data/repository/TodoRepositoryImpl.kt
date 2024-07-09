@@ -14,6 +14,7 @@ class TodoRepositoryImpl(
 
     override fun getTodos(): List<Todo> {
         return todoDataSource.getTodos()
+            .sortedBy { it.id }
     }
 
     override fun insertTodo(todo: Todo) {
