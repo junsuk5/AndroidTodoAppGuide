@@ -1,7 +1,6 @@
 package com.surivalcoding.todoapp.domain.repository
 
 import com.surivalcoding.todoapp.domain.model.Todo
-import kotlinx.coroutines.flow.Flow
 
 interface TodoRepository {
     fun getTodos(): List<Todo>

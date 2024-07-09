@@ -7,6 +7,8 @@ class AddTodoUseCase(
     private val todoRepository: TodoRepository
 ) {
     operator fun invoke(todo: Todo) {
+        // TODO : 사장님 요구 사항 : 중복인 것은 넣지 말 것
+
         todoRepository.insertTodo(todo)
     }
 }
